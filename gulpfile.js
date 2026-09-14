@@ -133,15 +133,20 @@ async function doAll() {
   series(series(startup, optimizeImages, as, purifyHtml))();
 }
 
-// Early prototype, not finished
-// will lead to produce
+      // Early prototype, not finished
+      // will lead to produce
+      //function addFallbackAvif() {
+        //return (series('addFallbackAvif1')())
+          // <picture>
+          // <source type="image/avif" srcset="./to/show.avif" />
+          // <source type="image/webp" srcset="./to/show.webp" />
+          // <img src="./to/show.png">
+          // </picture>
+      //}
 function addFallbackAvif() {
-  return (series('addFallbackAvif1')())
-    // <picture>
-    // <source type="image/avif" srcset="./to/show.avif" />
-    // <source type="image/webp" srcset="./to/show.webp" />
-    // <img src="./to/show.png">
-    // </picture>
+    return src(paths.images.src + '.{png,jpg,jpeg}')
+        .pipe(gulpAvif())
+        .pipe(dest(paths.images.dest));
 }
 task('addFallbackAvif1', ()=>{
     return src(paths.images.src+'.{png,jpg}')
