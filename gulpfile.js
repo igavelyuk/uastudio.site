@@ -129,25 +129,25 @@ const paths = {
 
 async function doAll() {
   series(copyHTML, compileStyles, copyCss, cacheBust, oneCss, minifyScripts,
-    purifyCss, finalScript, copyAllExceptCss, copyFontsTTF, copyFontsWeb, oneCssCompress, addFallbackAvif, cacheBust)();
+    purifyCss, finalScript, copyAllExceptCss, copyFontsTTF, copyFontsWeb, oneCssCompress, cacheBust)();
   series(series(startup, optimizeImages, as, purifyHtml))();
 }
 
 // Early prototype, not finished
 // will lead to produce
-function addFallbackAvif() {
-  return (series('addFallbackAvif1')())
-    // <picture>
-    // <source type="image/avif" srcset="./to/show.avif" />
-    // <source type="image/webp" srcset="./to/show.webp" />
-    // <img src="./to/show.png">
-    // </picture>
-}
-task('addFallbackAvif1', ()=>{
-    return src(paths.images.src+'.{png,jpg}')
-        .pipe(gulpAvif())
-        .pipe(dest(paths.images.dest));
-});
+                    // function addFallbackAvif() {
+                    //   return (series('addFallbackAvif1')())
+                    //     // <picture>
+                    //     // <source type="image/avif" srcset="./to/show.avif" />
+                    //     // <source type="image/webp" srcset="./to/show.webp" />
+                    //     // <img src="./to/show.png">
+                    //     // </picture>
+                    // }
+                    // task('addFallbackAvif1', ()=>{
+                    //     return src(paths.images.src+'.{png,jpg}')
+                    //         .pipe(gulpAvif())
+                    //         .pipe(dest(paths.images.dest));
+                    // });
 function placeholder() {
   return src('/src/preview-file/*.html')
     // `gulp-image-lqip` needs filepaths
@@ -398,7 +398,7 @@ function watcher() {
 // Export tasks to make them public
 // exports.copyImages = copyImages;
 exports.compileSASS = compileSASS;
-exports.addFallbackAvif = addFallbackAvif;
+                                          // exports.addFallbackAvif = addFallbackAvif;   
 exports.copyAllExceptCss = copyAllExceptCss;
 // exports.finishInfo = finishInfo;
 exports.oneCssCompress = oneCssCompress;
