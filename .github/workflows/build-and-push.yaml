@@ -45,10 +45,17 @@ jobs:
           path: deployment
 
       # 6. Replace deployment repository contents
+      # - name: Copy build files
+      #   run: |
+      #     rm -rf deployment/*
+      #     cp -a dist/base/. deployment/
+      # 6. Replace contents of /prod
       - name: Copy build files
         run: |
-          rm -rf deployment/*
-          cp -a dist/base/. deployment/
+          mkdir -p deployment/prod
+
+          rm -rf deployment/prod/*
+          cp -a dist/base/. deployment/prod/
 
       # 7. Commit and push deployment repository
       - name: Push deployment repository
